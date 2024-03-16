@@ -2012,6 +2012,8 @@ type ApplicationEvent =
   | "onSourceClipSelectedInProjectPanel"
   | "onSequenceActivated"
   | "onActiveSequenceChanged"
+  | "onActiveSequencePositionChanged"
+  | "onActiveSequencePlayerPositionChanged"
   | "onActiveSequenceSelectionChanged"
   | "onActiveSequenceTrackItemAdded"
   | "onActiveSequenceTrackItemRemoved"
