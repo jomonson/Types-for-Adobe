@@ -40,6 +40,18 @@ declare enum TIME_FORMAT {
   TIMEDISPLAY_AudioMsTimecode = 201,
 }
 
+declare enum INTERPOLATION_TYPE {
+  KFINTERPMODE_Linear,
+  KFINTERPMODE_EaseIn_Obsolete,
+  KFINTERPMODE_EaseOut_Obsolete,
+  KFINTERPMODE_EaseInEaseOut_Obsolete,
+  KFINTERPMODE_Hold,
+  KFINTERPMODE_Bezier,
+  KFINTERPMODE_Time,
+  KFINTERPMODE_TimeTransitionStart,
+  KFINTERPMODE_TimeTransitionEnd,
+}
+
 interface $ {
   _PPP_: any
 }
@@ -281,14 +293,14 @@ declare class Sequence {
   /**
    * Imports a Motion Graphics Template (.mogrt) into the sequence
    * @param pathToMOGRT Complete path to .mogrt
-   * @param timeInTicks Time (in ticks) at which to insert
+   * @param time Time at which to insert
    * @param videoTrackOffset The offset from first video track to targeted track
    * @param audioTrackOffset The offset from first audio track to targeted track
    * @returns newly-created `trackItem` representing the .mogrt
    */
   importMGT(
     pathToMOGRT: String,
-    timeInTicks: String,
+    time: Time,
     videoTrackOffset: number,
     audioTrackOffset: number,
   ): TrackItem
@@ -1952,26 +1964,26 @@ declare class ComponentParamCollection {
 
 declare class ComponentParam {
   readonly displayName: string
-  addKey(): boolean
+  addKey(time: Time, updateUI?: boolean): boolean
   areKeyframesSupported(): boolean
-  findNearestKey(): object
-  findNextKey(): object
-  findPreviousKey(): object
+  findNearestKey(time: Time, thresholdTicks: string): object
+  findNextKey(time: Time): object
+  findPreviousKey(time: Time): object
   getColorValue(): any[]
   getKeys(): any[]
   getValue(): any
-  getValueAtKey(): any
-  getValueAtTime(): any
+  getValueAtKey(time: Time): any
+  getValueAtTime(time: Time): any
   isEmpty(): boolean
   isTimeVarying(): boolean
   keyExistsAtTime(): boolean
-  removeKey(): boolean
-  removeKeyRange(start: Time, end: Time): boolean
-  setColorValue(p0: number, p1: number, p2: number, p3: number, p4: boolean): boolean
-  setInterpolationTypeAtKey(): boolean
-  setTimeVarying(p0: boolean, p1: boolean): boolean
+  removeKey(time: Time, updateUI?: boolean): boolean
+  removeKeyRange(start: Time, end: Time, updateUI?: boolean): boolean
+  setColorValue(alpha: number, red: number, green: number, blue: number, updateUI?: boolean): boolean
+  setInterpolationTypeAtKey(time: Time, interpolationType: INTERPOLATION_TYPE, updateUI?: boolean): boolean
+  setTimeVarying(isTimeVarying: boolean): boolean;
   setValue(value: any, updateUI?: boolean): boolean
-  setValueAtKey(): boolean
+  setValueAtKey(time: Time, value: any | any[], updateUI?: boolean): boolean
 }
 /**
  *
@@ -2182,7 +2194,7 @@ declare class Application {
   /**
    *
    */
-  setTimeout(eventName: string, function_: any, milliseconds: number): void
+  setTimeout(function_: any, milliseconds: number): void
 
   /**
    *
