@@ -1199,6 +1199,10 @@ declare class Component {
   /**
    *
    */
+  readonly instanceName: string
+  /**
+   *
+   */
   readonly matchName: string
   /**
    *
