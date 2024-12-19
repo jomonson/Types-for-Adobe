@@ -2076,6 +2076,9 @@ declare class Application {
    */
   readonly getAppSystemPrefPath: string
 
+
+  getCurrentProjectViewSelection(): ProjectItem[]
+
   /**
    *
    */
