@@ -809,7 +809,7 @@ declare class Time {
   /**
    *
    */
-  getFormatted(Time: Time, timeFormat: TIME_FORMAT): String
+  getFormatted(Time: Time, timeFormat: TIME_FORMAT): string
 
   /**
    *
@@ -1441,12 +1441,22 @@ declare class ProjectItem {
   /**
    *
    */
+  getInPoint(): Time
+
+  /**
+   *
+   */
   getMarkers(): MarkerCollection
 
   /**
    *
    */
   getMediaPath(): string
+
+  /**
+   *
+   */
+  getOutPoint(): Time
 
   /**
    *
@@ -1984,7 +1994,7 @@ declare class ComponentParam {
   removeKey(time: Time, updateUI?: boolean): boolean
   removeKeyRange(start: Time, end: Time, updateUI?: boolean): boolean
   setColorValue(alpha: number, red: number, green: number, blue: number, updateUI?: boolean): boolean
-  setInterpolationTypeAtKey(time: Time, interpolationType: INTERPOLATION_TYPE, updateUI?: boolean): boolean
+  setInterpolationTypeAtKey(time: Time, interpolationType: number, updateUI?: boolean): boolean
   setTimeVarying(isTimeVarying: boolean): boolean;
   setValue(value: any, updateUI?: boolean): boolean
   setValueAtKey(time: Time, value: any | any[], updateUI?: boolean): boolean

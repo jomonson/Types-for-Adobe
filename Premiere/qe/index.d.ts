@@ -557,7 +557,7 @@ interface Sequence {
   flushCache(): any
 }
 interface QETime {
-  ticks: number
+  ticks: string
   secs: number
   frames: number
   timecode: string
