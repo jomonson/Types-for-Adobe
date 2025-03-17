@@ -1481,6 +1481,11 @@ declare class ProjectItem {
   /**
    *
    */
+  isOffline(): boolean
+
+  /**
+   *
+   */
   moveBin(destination: ProjectItem): void
 
   /**
